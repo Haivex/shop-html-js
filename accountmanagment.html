@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sklep warzywno-owocowy - Zarządzanie kontem</title>
+        <link rel="stylesheet" href="appearance.css" type="text/css">
+        <link rel="stylesheet" href="account.css" type="text/css">
+        <link rel="icon" href="sources/favicon.ico">
+        <script src="https://kit.fontawesome.com/b64ffabfa5.js" crossorigin="anonymous" SameSite=None Secure></script>
+        <style>
+            main {
+                height: 1000px;
+            }
+        </style>
+    </head>
+    <script type="text/javascript" src="scripts/loginandregister.js"></script>
+    <script type="text/javascript" src="scripts/shoppingscript.js"></script>
+    <script type="text/javascript" src="scripts/selectedpage.js"></script>
+    <script type="text/javascript" src="scripts/colorandtheme.js"></script>
+    <script type="text/javascript" src="scripts/themechanged.js"></script>
+    <script type="text/javascript" src="scripts/autosize.js"></script>
+    <script type="text/javascript" src="scripts/showingemail.js"></script>
+    <script type="text/javascript" src="scripts/avatarchoose.js"></script>
+    <script type="text/javascript" src="scripts/rightmenu.js"></script>
+    <script type="text/javascript" src="scripts/lastviewed.js"></script>
+    <script type="text/javascript" src="scripts/showitems.js"></script>
+    <script type="text/javascript" src="scripts/showlogged.js"></script>
+    <script src="scripts/toggler.js"></script>
+    <script src="scripts/changearea.js"></script>
+    <noscript>Skrypty są wyłączone</noscript>
+    <body onload="showlastViewed(); changeManagmentRadio(); changeAllSelectedColor(); showShoppingItem(); showLogged()">
+        <div id="transparent" onclick="closeLogin(); hideMenu()"></div>
+        <div id="rightmenu">Menu</div>
+        </script>
+        <div id="loginform">
+            <div id="loginform">
+                <div id="loginformdisplay">
+                    <span id="form-intro">Zaloguj się</span><span id="close-button" onclick="closeLogin()">&times</span>
+                    <label class="login-label">Login</label><input type="text" class="form-field loginfield" required>
+                    <label class="login-label">Hasło</label><input type="password" class="form-field passwordfield" id="passwordfieldone" required>
+                    <span id="loginalert">Nieprawidłowy login lub hasło</span>
+                    <span id="registerlink" onclick="displayRegister()">Nie masz konta? Zarejestruj się</span>
+                    <button id="login-button" onclick="loginCredentialsCheck()">Zaloguj się</button>
+                </div>
+                <div id="registerformdisplay">
+                    <span id="form-intro">Zarejestruj się</span><span id="close-button" onclick="closeLogin()">&times</span>
+                    <label class="login-label">E-mail</label><input type="email" onfocus="showEmailReq()" onblur="hideEmailReq()" oninput="emailCheck()" id="registeremail" class="form-field loginfield" required>
+                    <ol id="emailrequirements" style="display: none;">
+                        <li class="emailrequirement"><i id="email1Requirement" class="fas fa-times"></i>Prawidłowy e-mail</li>
+                        <li class="emailrequirement"><i id="email2Requirement" class="fas fa-times"></i>E-mail dostępny (brak w bazie)</li>
+                    </ol>
+                    <label class="login-label">Hasło</label><input type="password" onfocus="showPasswordReq()" onblur="hidePasswordReq()" oninput="firstPasswordCheck(); secondPasswordCheck()" class="form-field passwordfield" required>
+                    <label class="login-label">Powtórz hasło</label><input type="password" onfocus="showPasswordReq()" onblur="hidePasswordReq()" oninput="secondPasswordCheck()" class="form-field passwordfield" required>
+                    <ol id="passwordrequirements" style="display: none;">
+                        <li class="requirement"><i id="firstRequirement" class="fas fa-times"></i>Długość hasła od 8 do 16 znaków</li>
+                        <li class="requirement"><i id="secondRequirement" class="fas fa-times"></i> Co najmniej 1 duża litera</li>
+                        <li class="requirement"><i id="thirdRequirement" class="fas fa-times"></i>Co najmniej 1 cyfra</li>
+                        <li class="requirement"><i id="fourthRequirement" class="fas fa-times"></i>Co najmniej 1 znak specjalny</li>
+                        <li class="requirement"><i id="fifthRequirement" class="fas fa-times"></i>Hasła muszą być takie same</li>
+                        
+                    </ol>
+                    <label id="regulations"><input id="regulationscheckbox" type="checkbox" onchange="checkRegulations()" required> Zapoznałem się z regulaminem dostępnym </label><a href="sources/regulamin.pdf">tutaj</a>
+                    <span id="loginlink" onclick="displayLogin()">Posiadasz konto? Zaloguj się</span>
+                    <button id="login-button" onclick="registerCredentialsCheck()">Zarejestruj się</button>
+                </div>
+            </div>
+        </div>
+            <header id="banner-container">
+                <div id="banner-content">
+                    <div id="logo"><a href="index.html"><img src="pictures/logo.jpg"></a></div>
+                    <div id="search-bar">
+                        <input type="search" oninput="searchItem()" results="5" placeholder="Szukaj" spellcheck="true" autosave="google" id="searching">
+                        <div id="searches">
+                            <div id="searchlist">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <button id="search-button"></button>
+                    <div id="hamburger" onclick="showMenu()"><i class="fas fa-bars"></i></div>
+                    <div id="shopping-cart" onmouseover="showShoppingCart()" onmouseout="hideShoppingCart()">
+                        <a>
+                            <object id="shopping-cart-icon" type="image/svg+xml" data="pictures/shopping-cart-solid.svg">
+                                <param name="src" value="pictures/shopping-cart-solid.svg">
+                            </object>
+                            <div id="shopcounter" data-counter="0"></div>
+                        </a>
+                        <div id="shopping-cart-field">
+                            <div id="shopping-cart-intro"><h3>Twój koszyk</h3></div>
+                            <div id="shopping-cart-total"><h3>Suma koszyka: 0,00zł</h3></div>
+                            <div style="clear: both;"></div>
+                            <div id="shopping-cart-empty">Twój koszyk jest pusty</div>
+                            <div id="shopping-cart-items">
+                            </div>
+                            <div id="shopping-cart-footer">
+                                <div id="shopping-cart-show">
+                                    <button id="shopping-cart-button">Zobacz koszyk</button>
+                                </div>
+                                <div id="shopping-cart-payment">
+                                    <button id="payment-button">Zapłać</button>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div id="login"><h2 id="login-text" onclick="openLogin()">Zaloguj się <i class="fas fa-sign-in-alt"></i></h2></div>
+                    <div id="account">
+                        <div class="account-wrapper">
+                            <div class="account-wrapper-name">
+                                <div class="account-icon">
+                                    <i class="fas fa-user-circle fa-3x"></i>
+                                </div>
+                                <div  class="account-text">QWE</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="account-wrapper-settings" href="accountmanagment.html" onclick="location.replace('accountmanagment.html');">
+                                <a href="accountmanagment.html" class="accountlink">
+                                    <i class="fas fa-cog fa-2x"></i>
+                                </a>
+                            </div>
+                            <div class="account-wrapper-logout" onclick="logOut()">
+                                <a href="#" class="logoutlink" onclick="logOut()">
+                                    <i class="fas fa-sign-out-alt fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main id="content-container">
+                <div id="categories-nav-container">
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Kategorie</h2>
+                            </div>
+                                <ol>
+                                    <li><a href="#" class="category-item">Owoce</a></li>
+                                    <li><a href="#" class="category-item">Warzywa</a></li>
+                                    <li><a href="#" class="category-item">Grzyby</a></li>
+                                    <li><a href="#" class="category-item">Inne</a></li>
+
+                                </ol>
+                        </div>
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Producenci</h2>
+                            </div>
+                            <select onchange="loadPage()" onmousedown="changeArrow()" id="producenci">
+                                <option value="index.html">Wszyscy producenci</option>
+                                <option value="searched1.html">PolFruits</option>
+                                <option value="searched2.html">BIOlogic</option>
+                                <option value="searched3.html">Fresh Fruits</option>
+                                <option value="applegreen.html">Tiny Fruits</option>
+                            </select>
+                        </div>  
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Tagi</h2>
+                            </div>
+                            <div id="blocks-container">
+                                <div class="puzzle">OWOCE</div>
+                                <div class="puzzle">WARZYWA</div>
+                                <div class="puzzle">GRZYBY</div>
+                                <div class="puzzle">BIO</div>
+                                <div class="puzzle">POLSKIE</div>
+                                <div class="puzzle">JABŁKA</div>
+                                <div class="puzzle">TRUSKAWKI</div>
+                                <div class="puzzle">BANANY</div>
+                            </div>
+                        </div>
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Nasze sklepy</h2>
+                            </div>
+                            <img src="pictures/sea.jpg">
+                            <a href="#" id="shops">Odkryj nasze sklepy <span class="icon">&#8250</span></a>
+                        </div>
+                        <div class="category-container" id="lastviewedcontainer">
+                            <div class="categories-title-container" id="lastviewedtitle">
+                                <h2>Ostatnio przeglądane</h2>
+                            </div>
+                            <a class="visitedlink">
+                                <div class="singleviewedcontainer">
+                                    <div class="leftviewed"><img class="lastimg"></div>
+                                    <div class="rightviewed">
+                                        <p class="lasttitle"></p>
+                                        <p class="lastprice"></p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="line"></div>
+                            <a class="visitedlink">
+                                <div class="singleviewedcontainer" id="secondlastviewed">
+                                    <div class="leftviewed"><img class="lastimg"></div>
+                                    <div class="rightviewed">
+                                        <p class="lasttitle"></p>
+                                        <p class="lastprice"></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                </div>
+                <div class="items-container active">
+                    <h2 id="accountbar"> <i class="fas fa-cog"></i> Zarządzanie kontem QWE</h2>
+                    <div id="accountsettings">
+                        <label>
+                            <div id="avatar-container">
+                                <img src="pictures/woman.jpg" width="32px" height="32px" id="avatarimage"><input type="file" accept="image/*" id="avatarinput" onchange="changeAvatar(event)"><br />
+                            </div>
+                        </label>
+                        Nazwa użytkownika: <input type="text" id="username" size="3" value="qwe"  maxlength="20" oninput='sizeInput("username")' onblur="checkLength()" onfocus='moveCursor("username")'><i class="fas fa-pencil-alt" onclick='openInput("username")'></i> <i class="fas fa-check"></i></br>
+                        Aktualny e-mail: <input type="email" size="10" id="actualemail" value="qwe@qwe.com" minlength="3" style="-webkit-text-security: square;" oninput='sizeInput("actualemail")' onfocus='moveCursor("actualemail")' disabled /><i class="far fa-eye-slash" id="showemail" onmousedown="showEmail()" onmouseup="showEmail()" onmouseout="hideEmail()"></i><i class="fas fa-pencil-alt" onclick='openInput("newemailinput")'></i>
+                        <div id="newemail" style="display: none;">Nowy e-mail: <input type="email" onblur="closeEmailInput()" id="newemailinput" minlength="3" oninput='sizeInput("newemailinput")'></div>
+                        <div id="accountdescription"><span>Opis:</span> <textarea id="aboutperson" maxlength="250" oninput="changeSizeArea()" onfocus='moveCursor("aboutperson")' placeholder="Napisz coś o sobie"></textarea> <i class="fas fa-pencil-alt" onclick='openInput("aboutperson")'></i></div>
+                        <br>
+                        <div class="linedecoration">Bezpieczeństwo&nbsp;<i class="fas fa-hashtag"></i></div>
+                        Aktualne hasło: <input type="password" onfocus='changePasswordAccount()' id="actualpassword" value="asd" size="8" minlength="8" maxlength="30"><i class="fas fa-pencil-alt" onclick='openInput("actualpassword")'></i><br />
+                        <div class="newpassword">Nowe hasło: <input class="newpasswordinput" type="password"></div>
+                        <div class="newpassword">Powtórz nowe hasło: <input class="newpasswordinput" type="password" onblur="closeNewPassword()"></div>
+                        Weryfikacja dwuetapowa:
+                        <label for="verificationtogglerinput">
+                        <div id="verificationtoggler">
+                            <input type="checkbox" id="verificationtogglerinput"  style="visibility: hidden;" onchange='changeToggler("verification")'>
+                            <div id="verificationcircle"></div>
+                        </div>
+                        </label><br /> 
+                        Numer telefomu: <input type="tel" onfocus='moveCursor("telnumber")' id="telnumber" size="9" value="123-123-123" maxlength="9"><i class="fas fa-pencil-alt" onclick='openInput("telnumber")'></i>
+                    </div>
+                    <div id="newsletter-managment">
+                        <div class="linedecoration">Zarządzanie newsletterem&nbsp;<i class="far fa-calendar-alt"></i></div>
+                        Najbliższy newsletter: <input type="date" value="2020-06-01"><br />
+                        Dostawanie wiadomości newslettera: 
+                        <label for="newslettertogglerinput">
+                            <div id="newslettertoggler">
+                                <input type="checkbox" id="newslettertogglerinput"  style="visibility: hidden;" onchange='changeToggler("newsletter")'>
+                                <div id="newslettercircle"></div>
+                            </div>
+                        </label><br />
+                    </div>
+                    <div id="accountappearance">
+                        <div class="linedecoration">Wygląd&nbsp;<i class="fas fa-palette"></i></i></div>
+                        Motyw: <input type="radio" name="colortheme" class="colorthemes" onclick="changeTheme()" value="light" checked>Jasny <input type="radio" class="colorthemes" name="colortheme" value="dark" onclick="changeTheme()">Ciemny <br />
+                        Kolor belki: <input type="color" onchange="changeColor()" id="coloring" value="#333333"> <span id="resetcolor" onclick="resetColor()">Resetuj</span>
+                        <script type="text/javascript">
+                        if(localStorage.getItem("color"))
+                        {
+                            color = document.querySelector("#coloring");
+                            color.value = localStorage.getItem("color");
+                        }
+                        </script>
+                    </div>
+                </div>
+            </main>
+            <footer id="footer-container">
+                <div id="newsletter-container">
+                    <div id="newsletter-input">
+                        <h2>Newsletter</h2>
+                        <input id="newsletter-input-field" type="email" placeholder="Wpisz swój e-mail">
+                        <button id="newsletter-button">&gt</button>
+                        
+                    </div>
+                    <div id="social-media">
+                        <a href="https://www.facebook.com" target="_blank"><img src="pictures/facebook-logo.png"></a><h2>Bądź na bieżąco</h2>
+                    </div>
+                <div style="clear: both;"></div>
+                </div>
+                    <div id="categories-container">
+                        <div class="column">
+                            <div class="categories-title"><h3>Kategorie</h3></div>
+                            <div class="categories-content">
+                               <ol>
+                                  <li class="list">Owoce</li>
+                                  <li class="list">Warzywa</li>
+                                  <li class="list">Grzyby</li>
+                                  <li class="list">Inne</li>
+                               </ol>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="categories-title"><h3>Informacje</h3></div>
+                            <div class="categories-content">
+                                  <li class="list">Nasze sklepy</li>
+                                  <li class="list">Wysyłka</li>
+                                  <li class="list">Legalność</li>
+                                  <li class="list">Regulamin</li>
+                                  <li class="list">Polityka prywatności</li>
+                                  <li class="list">Bezpieczeństwo płatności</li>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="categories-title"><h3>Moje konto</h3></div>
+                            <div class="categories-content">
+                                <li class="list">Moje zamówienia</li>
+                                <li class="list">Moje rachunki</li>
+                                <li class="list">Moje adresy</li>
+                                <li class="list">Moje Informacje osobiste</li>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contact-container">
+                        <div id="contact-content-container">
+                            <div id="contact-title"><h3>Informacje o sklepie</h3></div>
+                            <div id="contact-content-text" class="list"><p></p><i class="fas fa-map-marker-alt"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis enim ut augue hendrerit scelerisque. Sed vitae vestibulum nibh. Praesent porttitor eros id felis pretium porttitor. Aliquam rhoncus ut urna sed dapibus. Integer lobortis varius libero, eu ultrices est rhoncus eu. Pellentesque at tincidunt lacus, sagittis pretium turpis. Nulla nec tincidunt turpis. Nam nec bibendum nulla.</p>
+                            <p><i class="fas fa-phone"></i> Skontaktuj się z nami: <span class="white">(+48) 123-456-789</span> </p>
+                            <p><i class="far fa-envelope"></i> E-mail: <span class="white"><a href="mailto:qwe@asd.com">qwe@asd.com</a></span> </p></div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+            </footer>
+            <script type="text/javascript" src="scripts/script2.js">
+            </script>
+    </body>
+</html>

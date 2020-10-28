@@ -1,0 +1,178 @@
+#heading-listing {
+    margin-left: 30px;
+}
+#searchedword {
+    float: left;
+    clear: none;
+    margin-bottom: 30px;
+}
+#results {
+    float: right;
+    clear: none;
+    line-height: 43px;
+}
+#sorteditems {
+    border-bottom: 1px solid #ccc;
+    margin-left: 30px;
+}
+#sortselect {
+    width: 50px;
+}
+.pagination {
+    border-bottom: 1px solid #ccc;
+    margin-left: 30px;
+    padding: 20px 0px;
+}
+.showednumber {
+    float: left;
+}
+.pagenumbers {
+    float: right;
+}
+.singleproduct {
+    border-bottom: 1px solid #ccc;
+    margin-left: 30px;
+    padding: 20px 0px;
+}
+.productimg {
+    width: 250px;
+    height: 250px;
+    float: left;
+    border: 1px solid #ccc;
+}
+.productimg:hover {
+    cursor: pointer;
+}
+.productdesc {
+    float: left;
+    margin: 0px 20px;
+}
+.productprice {
+    float: left;
+    border-left: 1px solid #ccc;
+    padding: 0px 20px;
+    width: 175px;
+}
+.productdesc a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    display: block;
+    width: 350px;
+}
+.productdesc .emptyproduct {
+    display: block;
+    border: 1px solid #ccc;
+    background-color: #f3515c;
+    box-sizing: border-box;
+    border: 1px solid red;
+    width: 172px;
+    margin-top: 20px;
+    padding: 5px;
+    color: white;
+   
+}
+.addbuttonitem {
+    box-sizing: padding-box;
+    background-color: rgb(94, 94, 243);
+    float: left;
+    padding: 10px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.addbuttonitem:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+.more {
+    box-sizing: border-box;
+    border: 1px solid #9C9B9B;
+    padding: 5px;
+    font-size: 24px;
+    float: left;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: black;
+}
+.more:hover {
+    background-color: rgb(218, 216, 216);
+    cursor: pointer;
+}
+.price {
+    font-size: 21px;
+    font-weight: bold;
+    color: #333;
+}
+.pagenumber {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+.pagenumber:hover {
+    cursor: pointer;
+    border: 1px solid #333;
+}
+.showallitems {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.showallitems:hover {
+    cursor: pointer;
+    border: 1px solid #333;
+}
+.next, .previous {
+    font-size: 20;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #333333;
+}
+.next:hover, .previous:hover {
+    cursor:pointer;
+    color: black;
+}
+.fa-angle-left, .fa-angle-right {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.disabled:hover {
+    cursor: not-allowed;
+    color: #333;
+}
+.pagenumber.active {
+    cursor: default;
+    border: 1px solid black;
+    font-weight: bold;
+} 
+.wishlist:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+main {
+    padding-bottom: 150px;
+}
+.productdesc .inmagazine {
+    display: block;
+    border: 1px solid #ccc;
+    background-color: #3bf50c;
+    box-sizing: border-box;
+    border: 1px solid green;
+    width: 170px;
+    margin-top: 20px;
+    padding: 5px;
+    color: white;
+   
+}
+.lastpagination {
+    border-bottom: none;
+}
+.onelogo {
+    height: 100%;
+}
+a.oneproduct.product-name {
+    color: black;
+    text-align: left;
+}

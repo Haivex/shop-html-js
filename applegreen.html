@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jabłko zielone świeże z polskich sadów | Sklep warzywno-owocowy</title>
+        <link rel="stylesheet" href="appearance.css" type="text/css">
+        <link rel="stylesheet" href="availableproduct.css" type="text/css">
+        <link rel="icon" href="sources/favicon.ico">
+        <script src="https://kit.fontawesome.com/b64ffabfa5.js" crossorigin="anonymous" SameSite=None Secure></script>
+        <script type="text/javascript" src="scripts/loginandregister.js"></script>
+        <script type="text/javascript" src="scripts/shoppingscript.js"></script>
+        <script type="text/javascript" src="scripts/selectedpage.js"></script>
+        <script type="text/javascript" src="scripts/showitems.js"></script>
+        <script type="text/javascript" src="scripts/showlogged.js"></script>
+        <script type="text/javascript" src="scripts/selectedpage.js"></script>
+        <script type="text/javascript" src="scripts/lastviewed.js"></script>
+        <script type="text/javascript" src="scripts/colorandtheme.js"></script>
+        <script type="text/javascript" src="scripts/themechanged.js"></script>
+        <script type="text/javascript" src="scripts/rightmenu.js"></script>
+        <script type="text/javascript" src="scripts/database.js"></script>
+        <style>
+            main {
+                height: 1150px;
+            }
+        </style>
+    </head>
+    <body onload="showShoppingItem(); showLogged(); loadWishlist('applegreen'); getlastViewed(); showlastViewed(); changeAllSelectedColor(); changeAllTheme(); changeAvailableTheme()">
+        <script type="text/javascript" src="scripts/script5.js"></script>
+        <div id="transparent" onclick="closeLogin(), zoomOutImg(); hideMenu()"></div>
+        <div id="rightmenu">Menu</div>
+        <div id="loginform">
+            <div id="loginformdisplay">
+                <span id="form-intro">Zaloguj się</span><span id="close-button" onclick="closeLogin()">&times</span>
+                <label class="login-label">Login</label><input type="text" class="form-field loginfield" required>
+                <label class="login-label">Hasło</label><input type="password" class="form-field passwordfield" id="passwordfieldone" required>
+                <span id="loginalert">Nieprawidłowy login lub hasło</span>
+                <span id="registerlink" onclick="displayRegister()">Nie masz konta? Zarejestruj się</span>
+                <button id="login-button" onclick="loginCredentialsCheck()">Zaloguj się</button>
+            </div>
+            <div id="registerformdisplay">
+                <span id="form-intro">Zarejestruj się</span><span id="close-button" onclick="closeLogin()">&times</span>
+                <label class="login-label">E-mail</label><input type="email" onfocus="showEmailReq()" onblur="hideEmailReq()" oninput="emailCheck()" id="registeremail" class="form-field loginfield" required>
+                <ol id="emailrequirements" style="display: none;">
+                    <li class="emailrequirement"><i id="email1Requirement" class="fas fa-times"></i>Prawidłowy e-mail</li>
+                    <li class="emailrequirement"><i id="email2Requirement" class="fas fa-times"></i>E-mail dostępny (brak w bazie)</li>
+                </ol>
+                <label class="login-label">Hasło</label><input type="password" onfocus="showPasswordReq()" onblur="hidePasswordReq()" oninput="firstPasswordCheck(); secondPasswordCheck()" class="form-field passwordfield" required>
+                <label class="login-label">Powtórz hasło</label><input type="password" onfocus="showPasswordReq()" onblur="hidePasswordReq()" oninput="secondPasswordCheck()" class="form-field passwordfield" required>
+                <ol id="passwordrequirements" style="display: none;">
+                    <li class="requirement"><i id="firstRequirement" class="fas fa-times"></i>Długość hasła od 8 do 16 znaków</li>
+                    <li class="requirement"><i id="secondRequirement" class="fas fa-times"></i> Co najmniej 1 duża litera</li>
+                    <li class="requirement"><i id="thirdRequirement" class="fas fa-times"></i>Co najmniej 1 cyfra</li>
+                    <li class="requirement"><i id="fourthRequirement" class="fas fa-times"></i>Co najmniej 1 znak specjalny</li>
+                    <li class="requirement"><i id="fifthRequirement" class="fas fa-times"></i>Hasła muszą być takie same</li>
+                    
+                </ol>
+                <label id="regulations"><input id="regulationscheckbox" type="checkbox" onchange="checkRegulations()" required> Zapoznałem się z regulaminem dostępnym </label><a href="sources/regulamin.pdf">tutaj</a>
+                <span id="loginlink" onclick="displayLogin()">Posiadasz konto? Zaloguj się</span>
+                <button id="login-button" onclick="registerCredentialsCheck()">Zarejestruj się</button>
+            </div>
+        </div>
+        <div id="zoomedimg">
+            <span class="fa-layers fa-fw">
+            <i class="fas fa-circle"></i>
+            <i class="fa-inverse far fa-times-circle" onclick="zoomOutImg()"></i>
+            </span>
+            <img src="pictures/green-apple.jpg">
+            <div id="itemnametag">Jabłko zielone świeże z polskich sadów</div>
+        </div>
+            <header id="banner-container">
+                <div id="banner-content">
+                    <div id="logo"><a href="index.html"><img src="pictures/logo.jpg"></a></div>
+                    <div id="search-bar">
+                        <input type="search" oninput="searchItem()" results="5" placeholder="Szukaj" spellcheck="true" autosave="google" id="searching">
+                        <div id="searches">
+                            <div id="searchlist">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <button id="search-button"></button>
+                    <div id="hamburger" onclick="showMenu()"><i class="fas fa-bars"></i></div>
+                    <div id="shopping-cart" onmouseover="showShoppingCart()" onmouseout="hideShoppingCart()">
+                        <a>
+                            <object id="shopping-cart-icon" type="image/svg+xml" data="pictures/shopping-cart-solid.svg">
+                                <param name="src" value="pictures/shopping-cart-solid.svg">
+                            </object>
+                            <div id="shopcounter" data-counter="0"></div>
+                        </a>
+                        <div id="shopping-cart-field">
+                            <div id="shopping-cart-intro"><h3>Twój koszyk</h3></div>
+                            <div id="shopping-cart-total"><h3>Suma koszyka: 0,00zł</h3></div>
+                            <div style="clear: both;"></div>
+                            <div id="shopping-cart-empty">Twój koszyk jest pusty</div>
+                            <div id="shopping-cart-items">
+                           
+                            </div>
+                            <div id="shopping-cart-footer">
+                                <div id="shopping-cart-show">
+                                    <button id="shopping-cart-button">Zobacz koszyk</button>
+                                </div>
+                                <div id="shopping-cart-payment">
+                                    <button id="payment-button">Zapłać</button>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div id="login"><h2 id="login-text" onclick="openLogin()">Zaloguj się <i class="fas fa-sign-in-alt"></i></h2></div>
+                    <div id="account">
+                        <div class="account-wrapper">
+                            <div class="account-wrapper-name">
+                                <div class="account-icon">
+                                    <i class="fas fa-user-circle fa-3x"></i>
+                                </div>
+                                <div  class="account-text">qwe</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="account-wrapper-settings" href="accountmanagment.html" onclick="location.replace('accountmanagment.html');">
+                                <a href="accountmanagment.html" class="accountlink">
+                                    <i class="fas fa-cog fa-2x"></i>
+                                </a>
+                            </div>
+                            <div class="account-wrapper-logout" onclick="logOut()">
+                                <a href="#" class="logoutlink" onclick="logOut()">
+                                    <i class="fas fa-sign-out-alt fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main id="content-container">
+                <div id="pagetree">
+                   
+                </div>
+                <div id="categories-nav-container">
+                    <nav>
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Kategorie</h2>
+                            </div>
+                                <ol>
+                                    <li><a href="#" class="category-item">Owoce</a></li>
+                                    <li><a href="#" class="category-item">Warzywa</a></li>
+                                    <li><a href="#" class="category-item">Grzyby</a></li>
+                                    <li><a href="#" class="category-item">Inne</a></li>
+
+                                </ol>
+                        </div>
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Producenci</h2>
+                            </div>
+                            <select onchange="loadPage()" onclick="changeArrow()" id="producenci">
+                                <option value="index.html">Wszyscy producenci</option>
+                                <option value="searched1.html">PolFruits</option>
+                                <option value="searched2.html">BIOlogic</option>
+                                <option value="searched3.html">Fresh Fruits</option>
+                                <option value="applegreen.html" selected="selected">Tiny Fruits</option>
+                            </select>
+                        </div>  
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Tagi</h2>
+                            </div>
+                            <div id="blocks-container">
+                                <div class="puzzle">OWOCE</div>
+                                <div class="puzzle">WARZYWA</div>
+                                <div class="puzzle">GRZYBY</div>
+                                <div class="puzzle">BIO</div>
+                                <div class="puzzle">POLSKIE</div>
+                                <div class="puzzle">JABŁKA</div>
+                                <div class="puzzle">TRUSKAWKI</div>
+                                <div class="puzzle">BANANY</div>
+                            </div>
+                        </div>
+                        <div class="category-container">
+                            <div class="categories-title-container">
+                                <h2>Nasze sklepy</h2>
+                            </div>
+                            <img src="pictures/sea.jpg">
+                            <a href="#" id="shops">Odkryj nasze sklepy <span class="icon">&#8250</span></a>
+                        </div>
+
+                        <div class="category-container" id="lastviewedcontainer">
+                            <div class="categories-title-container" id="lastviewedtitle">
+                                <h2>Ostatnio przeglądane</h2>
+                            </div>
+                            <a class="visitedlink">
+                                <div class="singleviewedcontainer">
+                                    <div class="leftviewed"><img class="lastimg"></div>
+                                    <div class="rightviewed">
+                                        <p class="lasttitle"></p>
+                                        <p class="lastprice"></p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="line"></div>
+                            <a class="visitedlink">
+                                <div class="singleviewedcontainer" id="secondlastviewed">
+                                    <div class="leftviewed"><img class="lastimg"></div>
+                                    <div class="rightviewed">
+                                        <p class="lasttitle"></p>
+                                        <p class="lastprice"></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+                <div id="items-container">
+                    <div id="itemimportant">
+                        <div id="currentleftcolumn">
+                            <img id="pageimg" src="pictures/green-apple.jpg" alt="Jabłko" title="Jabłko zielone świeże z polskich sadów" id="currentitemlogo">
+                            <div id="imgzoom" onclick="zoomImg()">Powiększ <i class="fas fa-search-plus"></i></div>
+                        </div>
+                        <div id="currentmiddlecolumn">
+                            <div id="currentitemname"><h1 id="pagetitle">Jabłko zielone świeże z polskich sadów</h1></div>
+                            <div id="productcondition">Stan: <span>Nowy produkt</span></div>
+                            <div id="accessibility">Produkt na stanie</div>
+                            
+                            <div id="share"> <i class="fab fa-facebook-f"></i> Udostępnij</div>
+                            <div id="sendfriend"><a href=""><i class="far fa-envelope"></i>Wyślij do znajomego</a></div>
+                            <div id="print"><a href="javascript:print();"><i class="fas fa-print"></i>Wydrukuj</a></div>
+                        </div>
+                        <div id="currentrightcolumn">
+                            <div id="itemprice">13,96zł</div>
+                            <div id="quantity"><input type="number" id="quantitynumber" min="1" value="1"><button onclick="minusItem()">-</button><button onclick="plusItem()">+</button></div>
+                            <div id="shoppingcartadd">
+                                <div id="blueshopping" onclick="createItem(1)">
+                                    <div id="shopicon"><i class="fas fa-shopping-cart"></i></div>
+                                    <div id="line"></div>
+                                    <div id="addshop">Dodaj do koszyka</div>
+                                </div>
+                            </div>
+                            <div id="wishlist" onclick="addWishlist('applegreen')"><i class="far fa-star" id="wishlist-icon"></i><span id="wishlist-text">Dodaj do listy życzeń</span></div>
+                            <div id="payment">Płatność: <img src="pictures/paymentmethod.png"></div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    <div id="itemdescription">
+                        <div id="itemdescriptiontitle"><h3>Więcej informacji</h3></div>
+                        <div id="itemdescriptioncontent"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis enim ut augue hendrerit scelerisque. Sed vitae vestibulum nibh. Praesent porttitor eros id felis pretium porttitor. Aliquam rhoncus ut urna sed dapibus. Integer lobortis varius libero, eu ultrices est rhoncus eu. Pellentesque at tincidunt lacus, sagittis pretium turpis. Nulla nec tincidunt turpis. Nam nec bibendum nulla.</p>
+
+                            <p>Ut vitae faucibus erat. Curabitur purus magna, cursus non convallis in, vulputate et arcu. Curabitur cursus felis nec rutrum aliquet. Suspendisse dui purus, bibendum a ultricies eu, tincidunt vitae nibh. Morbi vel risus aliquam, convallis ipsum sit amet, dapibus massa. Maecenas rhoncus lacinia massa sed molestie. Nunc tempor tortor fermentum pellentesque aliquet.</p>
+                            
+                            <p>Duis bibendum velit vitae erat auctor sollicitudin. In egestas, risus sed molestie facilisis, magna purus tempor enim, fringilla convallis mauris urna sed justo. Quisque quis consequat neque, non condimentum ligula. Fusce justo massa, dapibus quis sollicitudin at, venenatis non erat. Proin vehicula sem mauris, eu tincidunt neque iaculis a. Aenean magna mi, eleifend vel rhoncus et, sollicitudin a enim. Curabitur ullamcorper mi sit amet dapibus laoreet. In vulputate sollicitudin metus, et bibendum est faucibus vel. Morbi et magna vel arcu vestibulum egestas id quis nulla.</p></div>
+                    </div>
+                    <div id="itemfamiliar">
+                        <div id="nextfamiliar"><i class="fas fa-arrow-circle-right" onclick="scrollFamiliar(186)"></i></div>
+                        <div id="previousfamiliar"><i class="fas fa-arrow-circle-left" onclick="scrollFamiliar(-186)"></i></div>
+                        <div id="itemfamiliartitle">
+                            <h3>16 podobnych przedmiotów</h3>
+                        </div>
+                        <div id="itemfamiliarcontent">
+                            <div class="singlefamiliaritem">
+                                <a href="applered.html"><img src="pictures/apple.jpg" title="Jabłko świeże z polskich sadów" class="itemfamiliarlogo"></a>
+                                <a class="namefamiliar" href="applered.html" title="Jabłko świeże z polskich sadów">Jabłko świeże z polskich sadów</a>
+                                <span class="pricefamiliar">3,95zł/kg</span>
+                                <button onclick="createSimilarItem(1)">Dodaj do koszyka</button>
+                            </div>
+                            <div class="singlefamiliaritem">
+                                <a href="banana.html"><img src="pictures/banana.jpg" title="Banany BIO z palemek" class="itemfamiliarlogo"></a>
+                                <a class="namefamiliar" href="banana.html" title="Banany BIO z palemek">Banany BIO z palemek</a>
+                                <span class="pricefamiliar">13,31zł/kg</span>
+                                <button onclick="createSimilarItem(2)">Dodaj do koszyka</button>
+                            </div>
+                            <div class="singlefamiliaritem">
+                                <a href="cherry.html"><img src="pictures/cherry.jpg" title="Przepiękne wiśnie suszone" class="itemfamiliarlogo"></a>
+                                <a class="namefamiliar" href="cherry.html" title="Przepiękne wiśnie suszone">Przepiękne wiśnie suszone</a>
+                                <span class="pricefamiliar">60,45zł/kg</span>
+                                <button onclick="createSimilarItem(3)">Dodaj do koszyka</button>
+                            </div>
+                            <div class="singlefamiliaritem">
+                                <a href="applegreen.html"><img src="pictures/green-apple.jpg" title="Jabłko zielone świeże z polskich sadów" class="itemfamiliarlogo"></a>
+                                <a class="namefamiliar" href="applegreen.html" title="Jabłko zielone świeże z polskich sadów">Jabłko zielone świeże z polskich sadów</a>
+                                <span class="pricefamiliar">13,96zł/kg</span>
+                                <button onclick="createSimilarItem(4)">Dodaj do koszyka</button>
+                            </div>
+                            <div class="singlefamiliaritem">
+                                <a href="pear.html"><img src="pictures/pear.jpg" title="Przepyszna gruszka z polskich sadów" class="itemfamiliarlogo"></a>
+                                <a class="namefamiliar" href="pear.html" title="Przepyszna gruszka z polskich sadów">Przepyszna gruszka z polskich sadów</a>
+                                <span class="pricefamiliar">11,83zł/kg</span>
+                                <button onclick="createSimilarItem(5)">Dodaj do koszyka</button>
+                            </div>
+                            <div class="singlefamiliaritem">
+                                <a href="orange.html"><img src="pictures/orange.jpg" title="Pomarańcza z Hiszpani" class="itemfamiliarlogo"></a>
+                                <a class="namefamiliar" href="orange.html" title="Pomarańcza z Hiszpani">Pomarańcza z Hiszpani</a>
+                                <span class="pricefamiliar">4,90zł/kg</span>
+                                <button onclick="createSimilarItem(6)">Dodaj do koszyka</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer id="footer-container">
+                <div id="newsletter-container">
+                    <div id="newsletter-input">
+                        <h2>Newsletter</h2>
+                        <input id="newsletter-input-field" type="email" placeholder="Wpisz swój e-mail">
+                        <button id="newsletter-button">&gt</button>
+                        
+                    </div>
+                    <div id="social-media">
+                        <a href="https://www.facebook.com" target="_blank"><img src="pictures/facebook-logo.png"></a><h2>Bądź na bieżąco</h2>
+                    </div>
+                <div style="clear: both;"></div>
+                </div>
+                <div id="categories-container">
+                    <div class="column">
+                        <div class="categories-title"><h3>Kategorie</h3></div>
+                        <div class="categories-content">
+                           <ol>
+                              <li class="list">Owoce</li>
+                              <li class="list">Warzywa</li>
+                              <li class="list">Grzyby</li>
+                              <li class="list">Inne</li>
+                           </ol>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="categories-title"><h3>Informacje</h3></div>
+                        <div class="categories-content">
+                              <li class="list">Nasze sklepy</li>
+                              <li class="list">Wysyłka</li>
+                              <li class="list">Legalność</li>
+                              <li class="list">Regulamin</li>
+                              <li class="list">Polityka prywatności</li>
+                              <li class="list">Bezpieczeństwo płatności</li>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="categories-title"><h3>Moje konto</h3></div>
+                        <div class="categories-content">
+                            <li class="list">Moje zamówienia</li>
+                            <li class="list">Moje rachunki</li>
+                            <li class="list">Moje adresy</li>
+                            <li class="list">Moje Informacje osobiste</li>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div id="contact-container">
+                        <div id="contact-content-container">
+                            <div id="contact-title"><h3>Informacje o sklepie</h3></div>
+                            <div id="contact-content-text list"><p></p><i class="fas fa-map-marker-alt"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis enim ut augue hendrerit scelerisque. Sed vitae vestibulum nibh. Praesent porttitor eros id felis pretium porttitor. Aliquam rhoncus ut urna sed dapibus. Integer lobortis varius libero, eu ultrices est rhoncus eu. Pellentesque at tincidunt lacus, sagittis pretium turpis. Nulla nec tincidunt turpis. Nam nec bibendum nulla.</p>
+                            <p><i class="fas fa-phone list"></i> Skontaktuj się z nami: <span class="white">(+48) 123-456-789</span> </p>
+                            <p><i class="far fa-envelope list"></i> E-mail: <span class="white"><a href="mailto:qwe@asd.com">qwe@asd.com</a></span> </p></div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+            </footer>
+            <script type="text/javascript" src="scripts/script6.js">
+            </script>
+    </body>
+</html>

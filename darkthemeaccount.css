@@ -1,0 +1,185 @@
+
+.items-container h2 {
+    height: 58px;
+    border-top: black solid 8px;
+    background-color: #3f3f3f ;
+    padding-left: 17px;
+    line-height: 58px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    color: white;
+}
+.linedecoration {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+.linedecoration::before, .linedecoration::after{
+    content: "";
+    border: 1px solid white;
+    display: flex;
+    flex-grow: 1;
+}
+.linedecoration::before {
+    margin-right: 10px;
+}
+.linedecoration::after {
+    margin-left: 10px;
+}
+#accountsettings {
+    margin-left: 15px;
+}
+#newsletter-managment {
+    margin-left: 15px;
+}
+#accountappearance {
+    margin-left: 15px;
+}
+#login {
+    display: none;
+}
+#account {
+    display: block;
+}
+input[type="text"], input[type="password"], input[type="email"]
+{
+    height: 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    padding-left: 5px;
+}
+input[type="color"] {
+    -webkit-appearance: none;
+    border: 1px solid black;
+    border-radius: 16px;
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0px;
+}
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 16px;
+    margin: 0;
+    padding: 0;
+}
+input[type="color"] {
+    -webkit-appearance: none;
+    border: 1px solid black;
+    border-radius: 16px;
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0px;
+}
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 16px;
+    margin: 0;
+    padding: 0;
+}
+input[type="file"] {
+    display: none;
+}
+#avatar-container {
+    width: 64px;
+    height: 64px;
+    border: 1px solid black;
+    border-radius: 32px;
+    float: left;
+    clear: both;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+#avatar-container img{
+    border-radius: 32px;
+}
+textarea {
+    width: 150px;
+    border: 1px solid #333333;
+    position: relative;
+    background-color: transparent;
+    color: white;
+}
+#accountdescription * {
+    vertical-align: top;
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+.newpassword {
+    display: none;
+}
+input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover {
+    cursor: pointer;
+}
+
+#verificationtoggler {
+    width: 40px;
+    height: 20px;
+    background-color: #d50102;
+    display: inline-block;
+    border-radius: 10px;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#verificationcircle {
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    background-color: white;
+    position: absolute;
+    top: 2px;
+    left: 3px; /*22px checked*/
+    transition: left 0.3s ease-in-out;
+}
+#newslettertoggler {
+    width: 40px;
+    height: 20px;
+    background-color: #d50102;
+    display: inline-block;
+    border-radius: 10px;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#newslettercircle {
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    background-color: white;
+    position: absolute;
+    top: 2px;
+    left: 3px; /*22px checked*/
+    transition: left 0.3s ease-in-out;
+}
+#aboutperson {
+    border: 0px;
+    resize: none;
+}
+.fa-pencil-alt:hover {
+    cursor: pointer;
+}
+input[type="date"]
+{
+    background-color: transparent;
+}
+#resetcolor {
+    font-size: 12px;
+}
+#resetcolor:hover {
+    cursor: pointer;
+}
+.newpassword {
+    border: 1px solid black;
+}
+input[disabled] {
+    color: black;
+}
+input[disabled]:hover {
+    cursor: default;
+}
